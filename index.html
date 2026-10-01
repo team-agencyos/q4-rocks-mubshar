@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Q4 2026 Rocks</title>
+<meta name="description" content="Technical Lead Q4 2026 rocks: six outcomes for how we build, ship and run client sites, with the problem each one fixes and the finish line.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: a roadmap. Fixed left rail lists the quarter; the main column walks month by month,
+   each rock split into "now" and "by the finish line" with a four-week track underneath. */
+:root{
+  --bg:#f3f5f4;--panel:#ffffff;--ink:#14201c;--ink-2:#4b5a55;--ink-3:#7c8a85;--rule:#dde3e0;
+  --accent:#0f7a6a;--accent-ink:#0b5c50;--accent-wash:#e3f1ee;
+  --track:#cfd8d5;--track-on:#0f7a6a;--status:#b7791f;--status-wash:#fbf1dc;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1513;--panel:#161e1b;--ink:#e8edeb;--ink-2:#aab6b1;--ink-3:#7f8c87;--rule:#28332f;
+  --accent:#4cc3ad;--accent-ink:#8fe0cf;--accent-wash:#163a33;
+  --track:#2d3a36;--track-on:#4cc3ad;--status:#e3b25b;--status-wash:#3a2d12;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1513;--panel:#161e1b;--ink:#e8edeb;--ink-2:#aab6b1;--ink-3:#7f8c87;--rule:#28332f;
+  --accent:#4cc3ad;--accent-ink:#8fe0cf;--accent-wash:#163a33;
+  --track:#2d3a36;--track-on:#4cc3ad;--status:#e3b25b;--status-wash:#3a2d12;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--sans);font-variant-numeric:tabular-nums}
+a{color:inherit}
+.page{max-width:1180px;margin:0 auto;padding-block:40px 72px;padding-inline:20px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:48px}
+@media (max-width:860px){.page{grid-template-columns:minmax(0,1fr);gap:28px;padding-block:28px 56px;padding-inline:16px}}
+
+/* Rail */
+.rail{position:sticky;top:24px;align-self:start}
+@media (max-width:860px){.rail{position:static}}
+.rail h1{margin:0 0 4px;font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+.rail .role{margin:0 0 20px;color:var(--ink-2);font-size:14px}
+.rail .stamp{font:500 12px/1.4 var(--mono);color:var(--ink-3);letter-spacing:.02em;margin-bottom:24px}
+.rail nav{border-top:1px solid var(--rule)}
+.rail .m{padding:14px 0 6px;font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink)}
+.rail ol{list-style:none;margin:0;padding:0 0 8px}
+.rail li a{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;padding:6px 0;text-decoration:none;color:var(--ink-2);font-size:14px;line-height:1.35}
+.rail li a:hover,.rail li a:focus-visible{color:var(--ink);outline:none}
+.rail li a span{font:500 12px/1.6 var(--mono);color:var(--ink-3)}
+.rail .legend{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);font-size:13px;color:var(--ink-3);line-height:1.5}
+@media (max-width:860px){
+  .rail nav{display:flex;gap:18px;overflow-x:auto;border-top:0;border-bottom:1px solid var(--rule);padding-bottom:10px;scrollbar-width:thin}
+  .rail nav>div{flex:0 0 auto;min-width:200px}
+  .rail .legend{display:none}
+}
+
+/* Thesis */
+.thesis{padding:0 0 28px;border-bottom:1px solid var(--rule);margin-bottom:8px}
+.thesis p{margin:0;max-width:62ch;font-size:19px;line-height:1.5;text-wrap:pretty}
+.thesis p b{font-weight:600;color:var(--accent-ink)}
+.thesis .how{margin-top:14px;max-width:62ch;color:var(--ink-2);font-size:15px}
+
+/* Month groups */
+.month{margin-top:40px}
+.month>h2{margin:0 0 16px;display:flex;align-items:baseline;gap:12px;font:500 13px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink)}
+.month>h2 small{font:400 13px/1 var(--mono);letter-spacing:0;text-transform:none;color:var(--ink-3)}
+
+/* Rock */
+.rock{background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:26px 28px 22px;margin-bottom:18px;scroll-margin-top:24px}
+@media (max-width:860px){.rock{padding:20px 18px 18px}}
+.rock .id{display:flex;align-items:center;gap:12px;margin-bottom:8px;font:500 12px/1 var(--mono);color:var(--ink-3);letter-spacing:.04em}
+.rock .id .st{display:inline-flex;align-items:center;gap:6px;color:var(--status);background:var(--status-wash);padding:4px 8px;border-radius:4px;letter-spacing:.02em}
+.rock .id .st::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--status)}
+.rock h3{margin:0 0 6px;font-size:24px;font-weight:600;letter-spacing:-.02em;line-height:1.2;text-wrap:balance}
+.rock .outcome{margin:0 0 20px;color:var(--ink-2);font-size:15.5px;max-width:70ch}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media (max-width:720px){.split{grid-template-columns:1fr}}
+.split>div{padding:16px 0}
+.split>div:first-child{padding-right:26px;border-right:1px solid var(--rule)}
+.split>div:last-child{padding-left:26px}
+@media (max-width:720px){
+  .split>div:first-child{padding-right:0;border-right:0;border-bottom:1px solid var(--rule)}
+  .split>div:last-child{padding-left:0}
+}
+.split h4{margin:0 0 8px;font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.split p{margin:0;font-size:15px;color:var(--ink)}
+.split ul{margin:0;padding:0;list-style:none}
+.split li{position:relative;padding-left:18px;margin:0 0 7px;font-size:15px}
+.split li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--accent)}
+.split .with{margin-top:12px;font-size:13.5px;color:var(--ink-3)}
+
+/* Four-week track */
+.track{margin-top:18px;padding-top:16px;border-top:1px solid var(--rule)}
+.track ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:720px){.track ol{grid-template-columns:1fr 1fr}}
+.track li{font-size:13px;line-height:1.4;color:var(--ink-2)}
+.track li::before{content:"";display:block;height:4px;border-radius:2px;background:var(--track);margin-bottom:8px}
+.track li b{display:block;font:500 11px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-ink);padding:1px 5px;border-radius:4px}
+
+/* Boundaries */
+.edge{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:28px;padding-top:20px;border-top:1px solid var(--rule)}
+@media (max-width:720px){.edge{grid-template-columns:1fr}}
+.edge h4{margin:0 0 8px;font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.edge ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px}
+.edge li{margin-bottom:5px}
+.colophon{margin-top:28px;font:400 12.5px/1.5 var(--mono);color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="page">
+
+<aside class="rail">
+  <h1>Q4 2026 Rocks</h1>
+  <p class="role">Technical Lead · how we build, ship and run client sites</p>
+  <div class="stamp">01 OCT → 31 DEC 2026<br>6 rocks · 4 weeks each<br>updated 01 OCT 2026</div>
+  <nav aria-label="Rocks">
+    <div><div class="m">October</div><ol>
+      <li><a href="#rock-1"><span>01</span>Site migrations lose nothing</a></li>
+      <li><a href="#rock-2"><span>02</span>Every missing lead detected within an hour</a></li>
+    </ol></div>
+    <div><div class="m">November</div><ol>
+      <li><a href="#rock-3"><span>03</span>Git is live on every site</a></li>
+      <li><a href="#rock-4"><span>04</span>Full control of a client site in one week</a></li>
+    </ol></div>
+    <div><div class="m">December</div><ol>
+      <li><a href="#rock-5"><span>05</span>SEO team ships content with no developer</a></li>
+      <li><a href="#rock-6"><span>06</span>Every live site runs from accounts we control</a></li>
+    </ol></div>
+  </nav>
+  <div class="legend">Each rock reads left to right: what is true now, what is true at the finish line, and the four weeks in between.</div>
+</aside>
+
+<main>
+  <section class="thesis">
+    <p>Our work rarely fails because of bad code. It fails because of <b>who owns what</b>, <b>what is actually live</b>, and <b>what breaks silently</b>. These six rocks fix those three things across every site we run.</p>
+    <p class="how">Each one is a company-level outcome, not a feature. It changes how more than one site is built or run, needs rollout and adoption, and has a number at the end that says whether it worked.</p>
+  </section>
+
+  <section class="month">
+    <h2>October <small>two rocks</small></h2>
+
+    <article class="rock" id="rock-1">
+      <div class="id"><span>ROCK 01 · MIGRATIONS · DUE 31 OCT</span><span class="st">Not started</span></div>
+      <h3>Site migrations lose nothing</h3>
+      <p class="outcome">One migration standard, so moving a site between platforms stops costing pages, form entries and rankings.</p>
+      <div class="split">
+        <div>
+          <h4>Now</h4>
+          <p>Every migration so far has left damage behind: pages that never made it across, dozens of old URLs returning 404 after launch, hundreds of links still pointing at the old domain, and form entries stranded on the old platform. Several more migrations are queued this quarter, and one site currently runs two parallel codebases.</p>
+          <p class="with">With: the SEO specialist on URL inventories and rankings, account leads on client sign-off.</p>
+        </div>
+        <div>
+          <h4>By the finish line</h4>
+          <ul>
+            <li>A written standard used on every migration: full URL inventory, complete archive of the old site, redirect map tested in the build, 14-day post-launch watch, decommission only after the archive is verified.</li>
+            <li>The site with two codebases is on one, with its full redirect map live and zero new 404s at 14 days.</li>
+            <li>Two old platforms decommissioned with verified archives.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="track"><ol>
+        <li><b>Week 1</b>Write the standard. Build the archive and redirect-check tooling.</li>
+        <li><b>Week 2</b>Consolidate the two-codebase site. Port its redirects.</li>
+        <li><b>Week 3</b>Run the post-launch watch. Archive the two old platforms.</li>
+        <li><b>Week 4</b>Decommission. Close out. Publish the standard.</li>
+      </ol></div>
+    </article>
+
+    <article class="rock" id="rock-2">
+      <div class="id"><span>ROCK 02 · LEADS · DUE 31 OCT</span><span class="st">Not started</span></div>
+      <h3>Every missing lead detected within an hour</h3>
+      <p class="outcome">Every lead form on every active site is known, owned and tested every day, so a broken form is caught in an hour instead of weeks.</p>
+      <div class="split">
+        <div>
+          <h4>Now</h4>
+          <p>Lead forms failed silently on several sites last quarter, for two to four weeks at a time. One form showed a success message and dropped the enquiry while ads were running to it. Some forms post to services we have no access to. Every time, a client or a person noticed before any system did.</p>
+          <p class="with">With: the infrastructure engineer on CRM and automation accounts, account leads on client access.</p>
+        </div>
+        <div>
+          <h4>By the finish line</h4>
+          <ul>
+            <li>A map of every form: where it is, what it posts to, where the lead lands, who owns the account.</li>
+            <li>Every form on accounts we control, through one standard handler.</li>
+            <li>An automated test submission to each form every day, with a Slack alert when it does not arrive.</li>
+            <li>30 days with zero undetected failures, and at least one real failure caught by the alert first.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="track"><ol>
+        <li><b>Week 1</b>Map every form and destination. List the accounts we need.</li>
+        <li><b>Week 2</b>Move forms onto our accounts. Replace unwired and mailto forms.</li>
+        <li><b>Week 3</b>Daily test runner and alerts live on every site.</li>
+        <li><b>Week 4</b>Watch, tune the alerts, start the 30-day clock.</li>
+      </ol></div>
+    </article>
+  </section>
+
+  <section class="month">
+    <h2>November <small>two rocks</small></h2>
+
+    <article class="rock" id="rock-3">
+      <div class="id"><span>ROCK 03 · RELEASES · DUE 30 NOV</span><span class="st">Not started</span></div>
+      <h3>Git is live on every site</h3>
+      <p class="outcome">One release path for every site, so anyone can see what is live, who shipped it, and roll it back in one step.</p>
+      <div class="split">
+        <div>
+          <h4>Now</h4>
+          <p>What is in the repo is not always what is live. Deploys have silently failed, reported success while still serving the previous day's build, or would have reverted changes that only existed in the hosting dashboard. Some sites deploy only from one person's machine. Leadership has had to ask what is actually being deployed.</p>
+          <p class="with">With: everyone who pushes code, on adopting the single path.</p>
+        </div>
+        <div>
+          <h4>By the finish line</h4>
+          <ul>
+            <li>Production deploys only from <code>main</code>, through a pull request, with build and redirect checks that must pass first.</li>
+            <li>Previews noindexed and password-protected.</li>
+            <li>A Slack post for every deploy: what went live, which pull request, who pushed it.</li>
+            <li>Rollback as one documented step. Stale pull requests closed or merged.</li>
+            <li>30 days with no silent or stale deploy on any site.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="track"><ol>
+        <li><b>Week 1</b>Write the standard. Connect every repo to its hosting project.</li>
+        <li><b>Week 2</b>Checks and the deploy post on the first three sites.</li>
+        <li><b>Week 3</b>Roll out to the rest. Clear the stale pull requests.</li>
+        <li><b>Week 4</b>Start the 30-day clock. Fix what it surfaces.</li>
+      </ol></div>
+    </article>
+
+    <article class="rock" id="rock-4">
+      <div class="id"><span>ROCK 04 · TAKEOVERS · DUE 30 NOV</span><span class="st">Not started</span></div>
+      <h3>Full control of a client site in one week</h3>
+      <p class="outcome">A takeover checklist that asks for everything on day one, so inheriting an existing site takes a week instead of a month.</p>
+      <div class="split">
+        <div>
+          <h4>Now</h4>
+          <p>Taking over an existing site has needed more than a dozen separate access requests, several rounds with the client, and weeks of waiting. Previous agencies sometimes still own parts of the stack. Credentials have been passed around in chat instead of the password vault. Each takeover rediscovers the same list.</p>
+          <p class="with">With: the operations lead on the onboarding process, account leads on client contacts.</p>
+        </div>
+        <div>
+          <h4>By the finish line</h4>
+          <ul>
+            <li>One access list sent on day one: code, hosting, domain and DNS, forms, email sending, integrations.</li>
+            <li>Named accounts for the team, with credentials only in the password vault.</li>
+            <li>A register entry for the site: what runs where and who owns each piece.</li>
+            <li>Used on the next two takeovers, with the time from kickoff to full control measured on both. Target: one week.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="track"><ol>
+        <li><b>Week 1</b>Build the checklist from the last three takeovers.</li>
+        <li><b>Week 2</b>Run it on the first takeover. Measure.</li>
+        <li><b>Week 3</b>Run it on the second. Fix the gaps.</li>
+        <li><b>Week 4</b>Publish in the handbook. Hand to onboarding.</li>
+      </ol></div>
+    </article>
+  </section>
+
+  <section class="month">
+    <h2>December <small>two rocks</small></h2>
+
+    <article class="rock" id="rock-5">
+      <div class="id"><span>ROCK 05 · PUBLISHING · DUE 31 DEC</span><span class="st">Not started</span></div>
+      <h3>SEO team ships content with no developer</h3>
+      <p class="outcome">One publishing approach for our sites, so approved content goes live the same day without a developer in the loop.</p>
+      <div class="split">
+        <div>
+          <h4>Now</h4>
+          <p>Posts and pages live as files in the code repo, so every publish needs a developer to edit and deploy. Finished, approved content waits, drafts sit on personal machines or stale branches, and a backlog of overdue posts builds up. Content is the agency's core deliverable and it goes through one person to ship.</p>
+          <p class="with">With: the SEO specialist as the first user, the operations lead on the approval step.</p>
+        </div>
+        <div>
+          <h4>By the finish line</h4>
+          <ul>
+            <li>One publishing approach chosen for our sites, with a preview and an approval step, running through the same release path as code.</li>
+            <li>Rolled out to the two sites with the biggest backlog first.</li>
+            <li>A post goes from approved draft to live with no developer involved, in under one day, measured.</li>
+            <li>The publish backlog on those two sites is cleared.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="track"><ol>
+        <li><b>Week 1</b>Choose the approach. Prototype on one site.</li>
+        <li><b>Week 2</b>Roll out to the second site. Train the SEO specialist.</li>
+        <li><b>Week 3</b>Clear the backlog through the new path.</li>
+        <li><b>Week 4</b>Measure lead times. Document for the remaining sites.</li>
+      </ol></div>
+    </article>
+
+    <article class="rock" id="rock-6">
+      <div class="id"><span>ROCK 06 · OWNERSHIP · DUE 31 DEC</span><span class="st">Not started</span></div>
+      <h3>Every live site runs from accounts we control</h3>
+      <p class="outcome">One register of every site we run, every production deploy from our own hosting team, and nothing left public that should not be.</p>
+      <div class="split">
+        <div>
+          <h4>Now</h4>
+          <p>About half our live client sites run from hosting accounts we cannot access, so fixes stall and deploys fail for reasons nobody can see. Our hosting team holds dozens of projects, most of them previews and audits on public URLs. An old tool still exposes a client's pricing on an account nobody can reach, and some repos with client material are public.</p>
+          <p class="with">With: the infrastructure engineer on account ownership, leadership on transfers and billing.</p>
+        </div>
+        <div>
+          <h4>By the finish line</h4>
+          <ul>
+            <li>A register of every active site: repo, production branch, hosting project, domain registrar, DNS holder, form backend owner. Kept current.</li>
+            <li>Every production site deploys from our hosting team, or has a documented exception with a working role.</li>
+            <li>Public previews, old tools and duplicate repos removed or protected.</li>
+            <li>Dependency alerts on, no live credentials in git history, no client material in public repos. Hosting cost reviewed after the cleanup.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="track"><ol>
+        <li><b>Week 1</b>Build the register from hosting, DNS and repos.</li>
+        <li><b>Week 2</b>Move the sites we can. Request transfers for the rest.</li>
+        <li><b>Week 3</b>Prune previews and duplicates. Fix public exposure.</li>
+        <li><b>Week 4</b>Close the exceptions. Review cost.</li>
+      </ol></div>
+    </article>
+  </section>
+
+  <section class="edge">
+    <div>
+      <h4>Outside these rocks</h4>
+      <ul>
+        <li>Tracking and analytics implementation</li>
+        <li>Design and build of new sites</li>
+        <li>Client reporting and dashboards</li>
+        <li>Company-wide account and email unification</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Needed from leadership</h4>
+      <ul>
+        <li>One hosting team and one billing owner for every production site</li>
+        <li>Sign-off to retire duplicate repos and public previews</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="colophon">Status updates weekly in the Friday rock post. Internal, team only.</p>
+</main>
+
+</div>
+</body>
+</html>
