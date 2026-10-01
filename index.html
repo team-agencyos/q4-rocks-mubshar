@@ -126,7 +126,7 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
     </ol></div>
     <div><div class="m">December</div><ol>
       <li><a href="#rock-5"><span>05</span>SEO team ships content with no developer</a></li>
-      <li><a href="#rock-6"><span>06</span>Every live site runs from accounts we control</a></li>
+      <li><a href="#rock-6"><span>06</span>Working deploy access to every live site</a></li>
     </ol></div>
   </nav>
   <div class="legend">Each rock reads left to right: what is true now, what is true at the finish line, and the four weeks in between.</div>
@@ -290,20 +290,21 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
     </article>
 
     <article class="rock" id="rock-6">
-      <div class="id"><span>ROCK 06 · OWNERSHIP · DUE 31 DEC</span><span class="st">Not started</span></div>
-      <h3>Every live site runs from accounts we control</h3>
-      <p class="outcome">One register of every site we run, every production deploy from our own hosting team, and nothing left public that should not be.</p>
+      <div class="id"><span>ROCK 06 · ACCESS · DUE 31 DEC</span><span class="st">Not started</span></div>
+      <h3>Working deploy access to every live site</h3>
+      <p class="outcome">Clients choose where their site is hosted. Wherever that is, we hold a working, named role to deploy and fix it, and nothing is left public that should not be.</p>
       <div class="split">
         <div>
           <h4>Now</h4>
-          <p>About half our live client sites run from hosting accounts we cannot access, so fixes stall and deploys fail for reasons nobody can see. Our hosting team holds dozens of projects, most of them previews and audits on public URLs. An old tool still exposes a client's pricing on an account nobody can reach, and some repos with client material are public.</p>
-          <p class="with">With: the infrastructure engineer on account ownership, leadership on transfers and billing.</p>
+          <p>For about half our live client sites we have no working role in the hosting account, so fixes stall and deploys fail for reasons nobody can see. Nobody has one list of where each site actually runs. Our own hosting team holds dozens of projects, most of them previews and audits on public URLs, an old tool still exposes a client's pricing on an account nobody can reach, and some repos with client material are public.</p>
+          <p class="with">With: the infrastructure engineer on hosting accounts, account leads on asking each client for the role we need.</p>
         </div>
         <div>
           <h4>By the finish line</h4>
           <ul>
-            <li>A register of every active site: repo, production branch, hosting project, domain registrar, DNS holder, form backend owner. Kept current.</li>
-            <li>Every production site deploys from our hosting team, or has a documented exception with a working role.</li>
+            <li>A register of every active site: repo, production branch, where it is hosted, domain registrar, DNS holder, form backend owner. Kept current.</li>
+            <li>On every production site, a named deploy role for the team in the client's hosting account, or in ours where the client prefers that. No shared logins.</li>
+            <li>A standard access level we ask every client for, written once and reused.</li>
             <li>Public previews, old tools and duplicate repos removed or protected.</li>
             <li>Dependency alerts on, no live credentials in git history, no client material in public repos. Hosting cost reviewed after the cleanup.</li>
           </ul>
@@ -311,7 +312,7 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
       </div>
       <div class="track"><ol>
         <li><b>Week 1</b>Build the register from hosting, DNS and repos.</li>
-        <li><b>Week 2</b>Move the sites we can. Request transfers for the rest.</li>
+        <li><b>Week 2</b>Request the standard role from every client where we lack one.</li>
         <li><b>Week 3</b>Prune previews and duplicates. Fix public exposure.</li>
         <li><b>Week 4</b>Close the exceptions. Review cost.</li>
       </ol></div>
@@ -331,7 +332,7 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
     <div>
       <h4>Needed from leadership</h4>
       <ul>
-        <li>One hosting team and one billing owner for every production site</li>
+        <li>Agreement on the standard access level we ask every client for</li>
         <li>Sign-off to retire duplicate repos and public previews</li>
       </ul>
     </div>
