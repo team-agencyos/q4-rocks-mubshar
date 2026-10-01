@@ -126,7 +126,7 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
     </ol></div>
     <div><div class="m">December</div><ol>
       <li><a href="#rock-5"><span>05</span>SEO team ships content with no developer</a></li>
-      <li><a href="#rock-6"><span>06</span>Working deploy access to every live site</a></li>
+      <li><a href="#rock-6"><span>06</span>Every site on one supported stack</a></li>
     </ol></div>
   </nav>
   <div class="legend">Each rock reads left to right: what is true now, what is true at the finish line, and the four weeks in between.</div>
@@ -134,7 +134,7 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
 
 <main>
   <section class="thesis">
-    <p>Our work rarely fails because of bad code. It fails because of <b>who owns what</b>, <b>what is actually live</b>, and <b>what breaks silently</b>. These six rocks fix those three things across every site we run.</p>
+    <p>Our work rarely fails because of bad code. It fails because of <b>who owns what</b>, <b>what is actually live</b>, <b>what breaks silently</b>, and <b>what can only be fixed one site at a time</b>. These six rocks fix those four things across every site we run.</p>
     <p class="how">Each one is a company-level outcome, not a feature. It changes how more than one site is built or run, needs rollout and adoption, and has a number at the end that says whether it worked.</p>
   </section>
 
@@ -290,31 +290,30 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
     </article>
 
     <article class="rock" id="rock-6">
-      <div class="id"><span>ROCK 06 · ACCESS · DUE 31 DEC</span><span class="st">Not started</span></div>
-      <h3>Working deploy access to every live site</h3>
-      <p class="outcome">Clients choose where their site is hosted. Wherever that is, we hold a working, named role to deploy and fix it, and nothing is left public that should not be.</p>
+      <div class="id"><span>ROCK 06 · STACK · DUE 31 DEC</span><span class="st">Not started</span></div>
+      <h3>Every site on one supported stack</h3>
+      <p class="outcome">One framework version, one build setup and one set of shared parts across all our sites, so a fix or an upgrade is done once and lands everywhere.</p>
       <div class="split">
         <div>
           <h4>Now</h4>
-          <p>For about half our live client sites we have no working role in the hosting account, so fixes stall and deploys fail for reasons nobody can see. Nobody has one list of where each site actually runs. Our own hosting team holds dozens of projects, most of them previews and audits on public URLs, an old tool still exposes a client's pricing on an account nobody can reach, and some repos with client material are public.</p>
-          <p class="with">With: the infrastructure engineer on hosting accounts, account leads on asking each client for the role we need.</p>
+          <p>Our sites run four different major versions of the same framework, two other frameworks, two versions of the CSS toolkit and two package managers. Header and footer code is copied into about a dozen repos with different contents, and the form handler has drifted into three versions. When the hosting platform dropped an old runtime version this week, builds broke on the sites that pinned it and nobody knew which others were exposed. Several clients have three or four repos, and the docs disagree on which one is live.</p>
+          <p class="with">With: everyone who builds sites, on adopting the shared package.</p>
         </div>
         <div>
           <h4>By the finish line</h4>
           <ul>
-            <li>A register of every active site: repo, production branch, where it is hosted, domain registrar, DNS holder, form backend owner. Kept current.</li>
-            <li>On every production site, a named deploy role for the team in the client's hosting account, or in ours where the client prefers that. No shared logins.</li>
-            <li>A standard access level we ask every client for, written once and reused.</li>
-            <li>Public previews, old tools and duplicate repos removed or protected.</li>
-            <li>Dependency alerts on, no live credentials in git history, no client material in public repos. Hosting cost reviewed after the cleanup.</li>
+            <li>One canonical repo per site. Duplicates archived, their READMEs pointing to the live one.</li>
+            <li>Every active site on one supported framework major and CSS toolkit version, with the runtime version pinned.</li>
+            <li>Shared parts in one package used by every site, not copied: form handler, deploy config, header and footer.</li>
+            <li>Proof: one platform or dependency upgrade applied to every site in a single day, with every build green.</li>
           </ul>
         </div>
       </div>
       <div class="track"><ol>
-        <li><b>Week 1</b>Build the register from hosting, DNS and repos.</li>
-        <li><b>Week 2</b>Request the standard role from every client where we lack one.</li>
-        <li><b>Week 3</b>Prune previews and duplicates. Fix public exposure.</li>
-        <li><b>Week 4</b>Close the exceptions. Review cost.</li>
+        <li><b>Week 1</b>Inventory every site's versions. Pick the target stack.</li>
+        <li><b>Week 2</b>Upgrade the first three sites. Extract the shared package.</li>
+        <li><b>Week 3</b>Upgrade the rest. Archive duplicate repos.</li>
+        <li><b>Week 4</b>Run the one-day upgrade test. Document the standard.</li>
       </ol></div>
     </article>
   </section>
@@ -332,7 +331,7 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
     <div>
       <h4>Needed from leadership</h4>
       <ul>
-        <li>Agreement on the standard access level we ask every client for</li>
+        <li>Sign-off on the target stack every new site is built on</li>
         <li>Sign-off to retire duplicate repos and public previews</li>
       </ul>
     </div>
