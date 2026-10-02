@@ -93,7 +93,8 @@ a{color:inherit}
 /* Four-week track */
 .track{margin-top:18px;padding-top:16px;border-top:1px solid var(--rule)}
 .track ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-@media (max-width:720px){.track ol{grid-template-columns:1fr 1fr}}
+.track.three ol{grid-template-columns:repeat(3,1fr)}
+@media (max-width:720px){.track ol,.track.three ol{grid-template-columns:1fr 1fr}}
 .track li{font-size:13px;line-height:1.4;color:var(--ink-2)}
 .track li::before{content:"";display:block;height:4px;border-radius:2px;background:var(--track);margin-bottom:8px}
 .track li b{display:block;font:500 11px/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
@@ -169,7 +170,7 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
     </article>
 
     <article class="rock" id="rock-2">
-      <div class="id"><span>ROCK 02 · LEADS · DUE 31 OCT</span><span class="st">Not started</span></div>
+      <div class="id"><span>ROCK 02 · LEADS · SYSTEM LIVE 31 OCT · PROOF BY 30 NOV</span><span class="st">Not started</span></div>
       <h3>Every missing lead detected within an hour</h3>
       <p class="outcome">Every lead form on every active site is known, owned and tested every day, so a broken form is caught in an hour instead of weeks.</p>
       <div class="split">
@@ -184,7 +185,8 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
             <li>A map of every form: where it is, what it posts to, where the lead lands, who owns the account.</li>
             <li>Every form on accounts we control, through one standard handler.</li>
             <li>An automated test submission to each form every day, with a Slack alert when it does not arrive.</li>
-            <li>30 days with zero undetected failures, and at least one real failure caught by the alert first.</li>
+            <li>The same daily test confirms the conversion event fires in analytics and ads. A lead that arrives without its conversion is the same silent failure, and it costs ad money daily.</li>
+            <li>Proof, in the 30 days after the due date: zero undetected failures, and at least one real failure caught by the alert first.</li>
           </ul>
         </div>
       </div>
@@ -201,7 +203,7 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
     <h2>November <small>two rocks</small></h2>
 
     <article class="rock" id="rock-3">
-      <div class="id"><span>ROCK 03 · RELEASES · DUE 30 NOV</span><span class="st">Not started</span></div>
+      <div class="id"><span>ROCK 03 · RELEASES · SYSTEM LIVE 30 NOV · PROOF BY 31 DEC</span><span class="st">Not started</span></div>
       <h3>Git is live on every site</h3>
       <p class="outcome">One release path for every site, so anyone can see what is live, who shipped it, and roll it back in one step.</p>
       <div class="split">
@@ -217,14 +219,15 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
             <li>Previews noindexed and password-protected.</li>
             <li>A Slack post for every deploy: what went live, which pull request, who pushed it.</li>
             <li>Rollback as one documented step. Stale pull requests closed or merged.</li>
-            <li>30 days with no silent or stale deploy on any site.</li>
+            <li>Every production site checked hourly for being up, a valid certificate and a working build, with a Slack alert on failure. Nobody has owned this since the previous checks stopped.</li>
+            <li>Proof, in the 30 days after the due date: no silent or stale deploy on any site.</li>
           </ul>
         </div>
       </div>
       <div class="track"><ol>
         <li><b>Week 1</b>Write the standard. Connect every repo to its hosting project.</li>
         <li><b>Week 2</b>Checks and the deploy post on the first three sites.</li>
-        <li><b>Week 3</b>Roll out to the rest. Clear the stale pull requests.</li>
+        <li><b>Week 3</b>Roll out to the rest. Clear the stale pull requests. Uptime, certificate and build checks on every site.</li>
         <li><b>Week 4</b>Start the 30-day clock. Fix what it surfaces.</li>
       </ol></div>
     </article>
@@ -259,10 +262,10 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
   </section>
 
   <section class="month">
-    <h2>December <small>two rocks</small></h2>
+    <h2>December <small>two rocks · three weeks each</small></h2>
 
     <article class="rock" id="rock-5">
-      <div class="id"><span>ROCK 05 · PUBLISHING · DUE 31 DEC</span><span class="st">Not started</span></div>
+      <div class="id"><span>ROCK 05 · PUBLISHING · DUE 19 DEC</span><span class="st">Not started</span></div>
       <h3>SEO team ships content with no developer</h3>
       <p class="outcome">One publishing approach for our sites, so approved content goes live the same day without a developer in the loop.</p>
       <div class="split">
@@ -281,16 +284,15 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
           </ul>
         </div>
       </div>
-      <div class="track"><ol>
+      <div class="track three"><ol>
         <li><b>Week 1</b>Choose the approach. Prototype on one site.</li>
         <li><b>Week 2</b>Roll out to the second site. Train the SEO specialist.</li>
-        <li><b>Week 3</b>Clear the backlog through the new path.</li>
-        <li><b>Week 4</b>Measure lead times. Document for the remaining sites.</li>
+        <li><b>Week 3</b>Clear the backlog through the new path. Measure lead times. Document for the remaining sites.</li>
       </ol></div>
     </article>
 
     <article class="rock" id="rock-6">
-      <div class="id"><span>ROCK 06 · STACK · DUE 31 DEC</span><span class="st">Not started</span></div>
+      <div class="id"><span>ROCK 06 · STACK · DUE 19 DEC</span><span class="st">Not started</span></div>
       <h3>Every site on one supported stack</h3>
       <p class="outcome">One framework version, one build setup and one set of shared parts across all our sites, so a fix or an upgrade is done once and lands everywhere.</p>
       <div class="split">
@@ -304,16 +306,15 @@ code{font:500 .9em var(--mono);background:var(--accent-wash);color:var(--accent-
           <ul>
             <li>One canonical repo per site. Duplicates archived, their READMEs pointing to the live one.</li>
             <li>Every active site on one supported framework major and CSS toolkit version, with the runtime version pinned.</li>
-            <li>Shared parts in one package used by every site, not copied: form handler, deploy config, header and footer.</li>
+            <li>Shared parts in one package used by every site, not copied: form handler, deploy config, header and footer, and the build-time claims check configured per client, so every site has the same gate against wrong claims creeping back.</li>
             <li>Proof: one platform or dependency upgrade applied to every site in a single day, with every build green.</li>
           </ul>
         </div>
       </div>
-      <div class="track"><ol>
+      <div class="track three"><ol>
         <li><b>Week 1</b>Inventory every site's versions. Pick the target stack.</li>
-        <li><b>Week 2</b>Upgrade the first three sites. Extract the shared package.</li>
-        <li><b>Week 3</b>Upgrade the rest. Archive duplicate repos.</li>
-        <li><b>Week 4</b>Run the one-day upgrade test. Document the standard.</li>
+        <li><b>Week 2</b>Upgrade the first three sites. Extract the shared package, claims check included.</li>
+        <li><b>Week 3</b>Upgrade the rest. Archive duplicate repos. Run the one-day upgrade test. Document the standard.</li>
       </ol></div>
     </article>
   </section>
